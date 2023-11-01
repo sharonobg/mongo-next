@@ -6,20 +6,19 @@ import bcrypt from "bcryptjs";
 connect();
 
 export const POST = async (request: NextRequest) => {
+
   try {
     const reqBody = await request.json();
-    console.log(reqBody);
+    console.log('login reqBody',reqBody);
     const { email, password } = await reqBody;
     // Checking if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
-        {
-          error: "User does not exist!",
-        },
+        {error: "User does not exist!"},
         { status: 400 }
       );
-    }else{console.log(user)}
+    }else{console.log('login user',user)}
 
     // Validation of Email
     const emailValidation = () => {
@@ -43,24 +42,18 @@ export const POST = async (request: NextRequest) => {
             {status:400}
         );
     }
-    //const salt = await bcrypt.genSalt(10);
-    //const encryptedPassword = await bcrypt.hash(password, salt);
-    //creating login session
-
+    //creating the login Session
     const loggedData={
         id:user._id,
         username:user.username,
         email:user.email
     };
-    console.log(loggedData);
-    return NextResponse.json(
-    
-        {
-            message:'It went through',
+    console.log('login loggedData',loggedData);
+    return NextResponse.json({
+            message:'User logged in',
             success:true,
             loggedData
-        }
-    );
+        });
     
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

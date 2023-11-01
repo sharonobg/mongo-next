@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
-
+//reducer for mongo store for users
 //created initial state
 const initialState={
     userInfo:null,
 };
 //declare the Slices
-export const mongoSlice = createSlice({
-    name:"mongo",
+export const userSlice = createSlice({
+    name:"mongouser",
     initialState,
     reducers:{
         addUser:(state,action)=>{
@@ -18,5 +18,5 @@ export const mongoSlice = createSlice({
     },
 });
 //Export Slices and reducers
-export const {addUser,removeUser} = mongoSlice.actions;
-export default mongoSlice.reducer;
+export const {addUser,removeUser} = userSlice.actions;
+export default userSlice.reducer;

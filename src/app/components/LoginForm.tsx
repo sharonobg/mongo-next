@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Input from '@/app/components/Input'
 import{ToastContainer, toast,cssTransition,Bounce} from "react-toastify"
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { addUser } from '@/redux/mongoSlice';
+import { addUser } from '@/redux/userSlice';
 
 
 const Slide = cssTransition({
@@ -45,20 +45,19 @@ const LoginForm = () => {
         });
         const data = await response.json();
         if(response.ok){
-            //dispatch(addUser(data.loggedData))
             const loggedData = data.loggedData;
             dispatch(addUser(loggedData))
-            toast.success("You r in!",{transition: Bounce})
-            console.log(data.loggedData);
-            //router.push("/")
+            toast.success("You&apos;r in!",{transition: Bounce})
+            
+            router.push("/profile")
         }else{
             toast.error(data.error);
-            console.log(data);
+            
         }
         
         //formRef.current?.reset();
      } catch(error) {
-        toast.error("Signup failed");
+        toast.error("Login failed");
      } finally{
         setLoading(false);
      }

@@ -1,2 +1,7 @@
-const TransactionsForm = () => {<h1>TransactionsForm Component</h1>}
+const TransactionsForm = () => {
+return(<>
+    <h1>TransactionsForm Component</h1>
+    </>
+    )
+}
 export default TransactionsForm

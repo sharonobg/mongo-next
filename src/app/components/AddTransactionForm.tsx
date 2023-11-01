@@ -13,18 +13,19 @@ const Slide = cssTransition({
     collapseDuration: 50,
   });
 
-const RegistrationForm = () => {
+const AddTransactionForm = () => {
     const router = useRouter()
-    const [user,setUser]= useState({
-        username:"",
-        email:"",
-        password: "",
+    const [transaction,setTransaction]= useState({
+        description:"",
+        amount:"",
+        category_id: "",
+        
     })
     const [loading,setLoading]= useState(false);
     const [disabled,setDisabled]= useState(true);
     
     //const formRef = useRef<HTMLFormElement>(null);
-    const handleReg = async (e:MouseEvent<HTMLButtonElement>) => {
+    const addTransaction = async (e:MouseEvent<HTMLButtonElement>) => {
 
      e.preventDefault();
      
@@ -32,15 +33,15 @@ const RegistrationForm = () => {
      try{
        
         setLoading(true);
-        const response = await fetch('http://localhost:3000/api/users/register',{
+        const response = await fetch('http://localhost:3000/api/users/transactions',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"
             },
             body:JSON.stringify({
-                username:user.username,
-                email:user.email,
-                password: user.password,
+                description:transaction.description,
+                amount:transaction.amount,
+                category_id: transaction.category_id,
             })
         });
         const data = await response.json();
@@ -50,7 +51,7 @@ const RegistrationForm = () => {
             
         }else{
             toast.error(data.error);
-            console.log('reg form error data',data);
+            console.log('add a transaction form error data',data);
         }
         console.log('data: ',data);
         
@@ -63,47 +64,47 @@ const RegistrationForm = () => {
 
     }
     useEffect (() => {
-        if(user.email.length > 0 && user.username.length > 0 && user.password.length > 0){
+        if(transaction.description.length > 0 && transaction.amount.length > 0 && transaction.category_id.length > 0){
             setDisabled(false);
         }else{
             setDisabled(true);
         }
-    },[user])
+    },[transaction])
     return(
         <>
         <div className="bg-gray-100 p-2 justify-center place-items-center">
             <form>
             <Input 
-            name="username"
-            label="Full Name"
+            name="description"
+            label="Description"
             className="text-gray-200"
-            placeholder="Your Name"
+            placeholder="Description"
             inputType="text" 
-            value={user.username} 
-            onChange={(e)=>setUser({...user,username:e.target.value})}
+            value={transaction.description} 
+            onChange={(e)=>setTransaction({...transaction,description:e.target.value})}
             />
             <Input 
-            name="email"
-            label="Email"
+            name="amount"
+            label="Amount"
             className="text-gray-200"
-            placeholder="youremail@gmail.com"
+            placeholder="amount"
             inputType="email"
-            value={user.email} 
-            onChange={(e)=>setUser({...user, email:e.target.value})}
+            value={transaction.amount} 
+            onChange={(e)=>setTransaction({...transaction, amount:e.target.value})}
             />
             <Input 
-            name="password"
-            label="Password"
+            name="categoryid"
+            label="Category"
             className="text-gray-200"
-            placeholder="your password"
+            placeholder="category"
             inputType="password"
-            value={user.password} 
-            onChange={(e)=>setUser({...user,password:e.target.value})}
+            value={transaction.category_id} 
+            onChange={(e)=>setTransaction({...transaction,category_id:e.target.value})}
             />
             {disabled?
             <button className="rounded-md border border-blue-200" onClick={(e)=>{e.preventDefault()}}>Fill in all fields</button>
                : 
-            <button className="rounded-md border border-blue-400" onClick={handleReg}>Create an account</button>
+            <button className="rounded-md border border-blue-400" onClick={addTransaction}>Create an account</button>
             }
             </form>
         </div>
@@ -113,4 +114,4 @@ const RegistrationForm = () => {
         </>
     )
 }
-export default RegistrationForm;
+export default AddTransactionForm;

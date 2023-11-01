@@ -3,7 +3,7 @@ import './globals.css'
 import {Nav} from './components/Nav'
 import "react-toastify/dist/ReactToastify.css"
 import ProviderComp from './components/Provider'
-
+import ConfigureUserRedux from './components/ConfigureRedux'
 
 export const metadata: Metadata = {
   title: 'Numbers App with Mongo and Redux Persist',
@@ -16,16 +16,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    
     <html lang="en">
-      
       <body className="flex flex-col bg-white">
-      <ProviderComp>
-      <Nav />
-      {children}
-      </ProviderComp>
-      </body>
+        <ProviderComp>
+        {/*<ConfigureUserRedux>*/}
+          <Nav />
+          {children}
+        {/*</ConfigureUserRedux>*/}
+        </ProviderComp>
+        </body>
     </html>
-    </>
+    
   )
 }
