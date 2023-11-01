@@ -51,9 +51,9 @@ const AddTransactionForm = () => {
             
         }else{
             toast.error(data.error);
-            console.log('add a transaction form error data',data);
+            //console.log('add a transaction form error data',data);
         }
-        console.log('data: ',data);
+        //console.log('data: ',data);
         
         //formRef.current?.reset();
      } catch(error) {

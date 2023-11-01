@@ -9,7 +9,7 @@ export const POST = async (request: NextRequest) => {
   try {
     //const currUser = 
     const reqBody = await request.json();
-    console.log('transaction reqBody',reqBody);
+    //console.log('transaction reqBody',reqBody);
     const { description, amount, category_id } = await reqBody;
     
     // Checking if user exists

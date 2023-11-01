@@ -8,7 +8,7 @@ connect();
 export const POST = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
-    console.log('register reqBody',reqBody);
+    //console.log('register reqBody',reqBody);
     const { username, email, password } = await reqBody;
 
     // Checking if user exists

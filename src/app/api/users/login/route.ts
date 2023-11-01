@@ -9,7 +9,7 @@ export const POST = async (request: NextRequest) => {
 
   try {
     const reqBody = await request.json();
-    console.log('login reqBody',reqBody);
+    //console.log('login reqBody',reqBody);
     const { email, password } = await reqBody;
     // Checking if user exists
     const user = await User.findOne({ email });
@@ -18,7 +18,7 @@ export const POST = async (request: NextRequest) => {
         {error: "User does not exist!"},
         { status: 400 }
       );
-    }else{console.log('login user',user)}
+    }else{console.log('login user success')}
 
     // Validation of Email
     const emailValidation = () => {
@@ -48,7 +48,7 @@ export const POST = async (request: NextRequest) => {
         username:user.username,
         email:user.email
     };
-    console.log('login loggedData',loggedData);
+    //console.log('login loggedData',loggedData);
     return NextResponse.json({
             message:'User logged in',
             success:true,
