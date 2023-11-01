@@ -31,9 +31,9 @@ const AddTransactionForm = () => {
      
      //const ref = useRef<HTMLFormElement>(null);
      try{
-       
+       const url = 
         setLoading(true);
-        const response = await fetch('http://localhost:3000/api/users/transactions',{
+        const response = await fetch(process.env.DOMAIN+ '/api/users/transactions',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"
