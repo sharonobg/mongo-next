@@ -32,7 +32,7 @@ const RegistrationForm = () => {
      try{
        
         setLoading(true);
-        const response = await fetch('http://localhost:3000/api/users/register',{
+        const response = await fetch(process.env.DOMAIN+'/api/users/register',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"
@@ -50,9 +50,9 @@ const RegistrationForm = () => {
             
         }else{
             toast.error(data.error);
-            console.log('reg form error data',data);
+            //console.log('reg form error data',data);
         }
-        console.log('data: ',data);
+        //console.log('data: ',data);
         
         //formRef.current?.reset();
      } catch(error) {

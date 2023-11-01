@@ -33,7 +33,7 @@ const LoginForm = () => {
      //const ref = useRef<HTMLFormElement>(null);
      try{
        setLoading(true);
-        const response = await fetch('http://localhost:3000/api/users/login',{
+        const response = await fetch(process.env.DOMAIN+'/api/users/login',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"
