@@ -33,7 +33,7 @@ const AddTransactionForm = () => {
      try{
        const url = 
         setLoading(true);
-        const response = await fetch(process.env.DOMAIN+ '/api/users/transactions',{
+        const response = await fetch(process.env.NEXT_PUBLIC_URL+ '/api/users/transactions',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"

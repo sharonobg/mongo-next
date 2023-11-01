@@ -32,7 +32,7 @@ const RegistrationForm = () => {
      try{
        
         setLoading(true);
-        const response = await fetch(process.env.DOMAIN+'/api/users/register',{
+        const response = await fetch(process.env.NEXT_PUBLIC_URL+'/api/users/register',{
             method: "POST",
             headers:{
                 "Content-type":"application/json"
